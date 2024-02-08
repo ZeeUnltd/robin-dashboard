@@ -4,7 +4,9 @@
     <section class="flex">
       <dashboard-sidebar></dashboard-sidebar>
       <dashboard-header>
-        <NuxtPage />
+        <main class="flex items-center">
+          <NuxtPage />
+        </main>
       </dashboard-header>
     </section>
   </div>
