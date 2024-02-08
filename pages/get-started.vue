@@ -1,7 +1,8 @@
 <template>
-  <main class="container p-5 max-w-[1440px] flex flex-col mx-auto gap-5 overflow-auto scrollbar-change">
+  <div class="">
+    <!-- flex flex-col gap-5  scrollbar-change -->
     getStart
-  </main>
+  </div>
 </template>
 
 <script lang="ts" setup>
