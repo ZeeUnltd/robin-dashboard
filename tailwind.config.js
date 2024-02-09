@@ -25,6 +25,7 @@ module.exports = {
       sans: ["Graphik", "sans-serif"],
       serif: ["Merriweather", "serif"],
       title: ["Hanken Grotesk"],
+      hanken: ['Inclusive Sans', "sans-serif"]
     },
     extend: {
       spacing: {
