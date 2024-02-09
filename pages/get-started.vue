@@ -1,7 +1,8 @@
 <template>
-  <div class="">
-    <!-- flex flex-col gap-5  scrollbar-change -->
-    getStart
+  <div class="container lg:px-30">
+
+    <leaderboard />
+
   </div>
 </template>
 

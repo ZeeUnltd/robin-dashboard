@@ -1,11 +1,12 @@
 <template>
-  <div class="">
-    Moderation
-  </div>
+    <div class="">
+        Settings
+    </div>
 </template>
-
+  
 <script lang="ts" setup>
 definePageMeta({
-  layout: 'dashboard'
+    layout: 'dashboard'
 })
 </script>
+  
