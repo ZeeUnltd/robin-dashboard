@@ -43,12 +43,13 @@
 
       <section class="w-full my-5 p-5 text-primary">
         <ul class="pl-8">
-          <li v-for="(menu, index) in menuItems" :key="menu?.id+index" :name="router.name" class="my-9 flex cursor-pointer hover:text-orange" :class="{'active': router.name == menu.id}">
+          <li v-for="(menu, index) in menuItems" :key="menu?.id + index" :name="router.name"
+            class="my-9 flex cursor-pointer hover:text-orange" :class="{ 'active': router.name == menu.id }">
             <NuxtLink :to="`${menu.id}`">
               <div class="flex items-center align-middle">
                 <span class="text-red mr-3">
-                  <icons-get-started stroke="{ router.name == menu.id ? 'active' : null}"/>
-                  
+                  <icons-get-started stroke="active" />
+
                 </span>
                 <span class="capitalize">
                   {{ menu.name }}
@@ -56,7 +57,13 @@
               </div>
             </NuxtLink>
           </li>
-          
+
+          <base-button @click="tryApi(urlFirst)" text="fly am"></base-button>
+
+          <p>
+            <span v-if="resulted"> {{ resulted }}</span>
+          </p>
+
         </ul>
       </section>
     </div>
@@ -64,24 +71,57 @@
 </template>
 
 <script lang="ts" setup>
-  const router = useRouter()
-  const menuItems = reactive([
-    {name: 'get started', id: 'get-started'},
-    {name: 'analytics', id: 'analytics'},
-    {name: 'chat', id: 'chat'},
-    {name: 'moderation', id: 'moderation'},
-    {name: 'api & auth keys', id: 'api'}
-  ])
-</script>
-<style scoped>
-  .active {
-    @apply text-robin;
+const router = useRouter()
+const menuItems = reactive([
+  { name: 'get started', id: 'get-started' },
+  { name: 'analytics', id: 'analytics' },
+  { name: 'chat', id: 'chat' },
+  { name: 'moderation', id: 'moderation' },
+  { name: 'api & auth keys', id: 'api' }
+])
+
+
+
+let urlFirst = ref('https://www.letsrevolutionizetesting.com/challenge?id=756775492')
+const resulted = ref({})
+
+const fixUrl = (url: string) => url.replace('challenge?', 'challenge.json?')
+
+async function tryApi(path: string) {
+  try {
+    const response: any = await $fetch(fixUrl(path))
+    if (response?.follow) {
+      urlFirst.value = response?.follow
+
+    } else {
+      resulted.value = response
+    }
+  } catch (error) {
+    console.log({ error });
+
+  }
+
 }
+tryApi(urlFirst)
+
+// useFetch(url, {
+//     method,
+//     body,
+//     ...RequestInterceptorConfig,
+//     retry: 1,
+//     ...options,
+//   })
+</script>
+<!-- <style scoped>
+/* .active {
+  @apply text-robin;
+}
+
 .active svg {
   @apply text-robin;
-  
-}
-</style>
+
+} */
+</style> -->
 <!-- <style>
 .active {
     @apply text-robin;
